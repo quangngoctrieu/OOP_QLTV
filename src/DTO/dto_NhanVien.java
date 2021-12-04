@@ -28,7 +28,4 @@ public class dto_NhanVien extends dto_ConNguoi{
         NgayVaoLam = ngayVaoLam;
     }
 
-    public void test(){
-
-    }
 }

@@ -6,6 +6,18 @@ public class dto_ConNguoi {
     private String HoTen,Phai,DiaChi,Sdt;
     private Date NgaySinh;
 
+    public dto_ConNguoi(String hoTen, String phai, String diaChi, String sdt, Date ngaySinh) {
+        HoTen = hoTen;
+        Phai = phai;
+        DiaChi = diaChi;
+        Sdt = sdt;
+        NgaySinh = ngaySinh;
+    }
+
+    public dto_ConNguoi() {
+
+    }
+
     public String getHoTen() {
         return HoTen;
     }
@@ -46,16 +58,6 @@ public class dto_ConNguoi {
         DiaChi = diaChi;
     }
 
-    public dto_ConNguoi(String hoTen, String phai, String diaChi, String sdt, Date ngaySinh) {
-        HoTen = hoTen;
-        Phai = phai;
-        DiaChi = diaChi;
-        Sdt = sdt;
-        NgaySinh = ngaySinh;
-    }
 
-    public dto_ConNguoi() {
-
-    }
 
 }

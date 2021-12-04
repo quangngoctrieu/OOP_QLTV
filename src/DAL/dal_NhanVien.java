@@ -13,7 +13,6 @@ public class dal_NhanVien {
 }
 
 
-
 //    private int a;
 //
 //    FileReader file;
@@ -28,15 +27,17 @@ public class dal_NhanVien {
 //
 //
 //    BufferedReader input = new BufferedReader(file);
+//
 //    public int teset() throws IOException {
 //        String i;
-//        int t=0;
-//        while ((i=input.readLine()) != null) {
-//            if (i.length()==0)
+//        int t = 0;
+//        while ((i = input.readLine()) != null) {
+//            if (i.length() == 0)
 //                System.out.println("12345");
-//            else{
-//            System.out.println(i);
-//            t++;}
+//            else {
+//                System.out.println(i);
+//                t++;
+//            }
 //        }
 //        System.out.println(t);
 //        try {
@@ -53,8 +54,8 @@ public class dal_NhanVien {
 //    }
 //
 //    public static void main(String[] args) throws IOException {
-//        dal_NhanVien d=new dal_NhanVien();
+//        dal_NhanVien d = new dal_NhanVien();
 //        d.teset();
 //
 //    }
-
+//}

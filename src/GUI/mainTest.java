@@ -6,6 +6,8 @@ import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class mainTest {
 //    public static void main(String[] args) {
@@ -67,18 +69,83 @@ public class mainTest {
 //         }
 //    }
 
-    public static void main(String[] args) throws IOException {
-        BufferedWriter bw = null;
-        try {
-            FileWriter fw = new FileWriter("src/Data/testghi.txt", true);
-            bw = new BufferedWriter(fw);
-            bw.write("hai 321 ");
-
-        } finally {
-
-            if (bw != null) {
-                bw.close();
-            }
-        }
-    }
+//    public static void main(String[] args) throws IOException {
+//        BufferedReader bf = null;
+//        BufferedWriter bufferedWriter = null;
+//
+//        try {
+//            Reader reader = new FileReader("src/Data/test.txt");
+//            Writer writer = new FileWriter("src/Data/test.txt");
+//
+//            bf = new BufferedReader(reader);
+//            bufferedWriter = new BufferedWriter(writer);
+//
+//            String c="";
+//            int t = 0;
+//            c = bf.readLine();
+//            System.out.println("c: "+c);
+//            while ((c = bf.readLine()) != null) {
+//                dto_SinhVien sv = new dto_SinhVien();
+//                sv = Luu_sv(c);
+//                int id = Integer.parseInt(sv.getIdSV());
+//                if (id == 2)
+//                    sv.setIdSV("5");
+//                String s = sv.getIdSV() + "-" +
+//                        sv.getHoTen() + "-" +
+//                        sv.getPhai() + "-" +
+//                        sv.getLop() + "-" +
+//                        sv.getDiaChi() + "-" +
+//                        sv.getSdt();
+//                bufferedWriter.write(s);
+//                bufferedWriter.newLine();
+//            }
+//        } finally {
+//            if (bf != null) {
+//                bf.close();
+//            }
+//            if (bufferedWriter != null) {
+//                bufferedWriter.close();
+//            }
+//        }
+//        System.out.println("thành công");
+//    }
+//
+//    private static Date Chuyen_String_Date(String ngaySinh) {
+//        Date ngay = new Date();
+//        SimpleDateFormat Format = new SimpleDateFormat("dd/MM/yyyy");   // Định dạng ngày tháng trong chuỗi
+//        Date ngsinh = null;
+//        try {
+//            ngsinh = Format.parse(ngaySinh);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        return ngsinh;
+//    }
+//
+//
+//    private static dto_SinhVien Luu_sv(String chuoi) {
+//        StringTokenizer st = new StringTokenizer(chuoi, "-");
+//        dto_SinhVien arr_SV = new dto_SinhVien();
+//        while (st.hasMoreTokens()) {
+//            arr_SV = new dto_SinhVien();
+//            arr_SV.setIdSV(st.nextToken());
+//            arr_SV.setHoTen(st.nextToken());
+//            arr_SV.setPhai(st.nextToken());
+//            arr_SV.setLop(st.nextToken());
+//            arr_SV.setDiaChi(st.nextToken());
+//            arr_SV.setSdt(st.nextToken());
+//            String ngay = st.nextToken();
+//            Date ngsinh = Chuyen_String_Date(ngay);
+//            arr_SV.setNgaySinh(ngsinh);
+//        }
+//        return arr_SV;
+//    }
+public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    Date s=new Date();
+    s=null;
+//    String s=sc.nextLine();
+    if(s==null)
+    System.out.println("hello "+s);
+}
 }

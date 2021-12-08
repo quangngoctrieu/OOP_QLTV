@@ -6,7 +6,7 @@ public class bll_NhanVien implements bll_ConNguoi{
     dto_NhanVien nv=new dto_NhanVien();
 
     public void test(){
-        nv.setMaNV("hi");
+        nv.setIdNV("hi");
     }
 
 

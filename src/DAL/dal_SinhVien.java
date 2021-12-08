@@ -42,16 +42,18 @@ public class dal_SinhVien {
 
     public static boolean GhiFile(dto_SinhVien sv) throws IOException {
         BufferedWriter bw = null;
+        sv.setIdSV(tangId());
         try {
             FileWriter fw = new FileWriter("src/Data/SinhVien.txt", true);
             bw = new BufferedWriter(fw);
             bw.newLine();
-            String s=   sv.getIdSV()  + "-" +
-                        sv.getHoTen() + "-" +
-                        sv.getPhai()  + "-" +
-                        sv.getLop()   + "-" +
-                        sv.getDiaChi()+ "-" +
-                        sv.getSdt();
+            String s = sv.getIdSV() + "-" +
+                    sv.getHoTen() + "-" +
+                    sv.getPhai() + "-" +
+                    sv.getLop() + "-" +
+                    sv.getDiaChi() + "-" +
+                    sv.getSdt() + "-" +
+                    Chuyen_Date_String(sv.getNgaySinh());
             bw.write(s);
         } catch (IOException e) {
             e.printStackTrace();
@@ -67,23 +69,24 @@ public class dal_SinhVien {
 
     public static boolean GhiFile_Giua(dto_SinhVien[] sv) throws IOException {
         BufferedWriter bw = null;
-        int cd_DSSV=sv.length;
+        int cd_DSSV = sv.length;
         try {
             FileWriter fw = new FileWriter("src/Data/SinhVien.txt");
             bw = new BufferedWriter(fw);
-            String dongTieuDe="MSSV        -    HọTên       -   Phai   -   Lớp -   ĐịaChỉ      -   SĐT     -   NgàySinh";
+            String dongTieuDe = "MSSV        -    HọTên       -   Phai   -   Lớp -   ĐịaChỉ      -   SĐT     -   NgàySinh";
             bw.write(dongTieuDe);
             bw.close();
-            fw = new FileWriter("src/Data/SinhVien.txt",true);
+            fw = new FileWriter("src/Data/SinhVien.txt", true);
             bw = new BufferedWriter(fw);
-            for (int i=0;i<cd_DSSV;i++) {
+            for (int i = 0; i < cd_DSSV; i++) {
                 bw.newLine();
                 String s = sv[i].getIdSV() + "-" +
                         sv[i].getHoTen() + "-" +
                         sv[i].getPhai() + "-" +
                         sv[i].getLop() + "-" +
                         sv[i].getDiaChi() + "-" +
-                        sv[i].getSdt();
+                        sv[i].getSdt() + "-" +
+                        sv[i].getNgaySinh();
                 bw.write(s);
             }
         } catch (IOException e) {
@@ -99,23 +102,24 @@ public class dal_SinhVien {
 
     public static boolean Xoa(dto_SinhVien[] sv) throws IOException {
         BufferedWriter bw = null;
-        int cd_DSSV=sv.length;
+        int cd_DSSV = sv.length;
         try {
             FileWriter fw = new FileWriter("src/Data/SinhVien.txt");
             bw = new BufferedWriter(fw);
-            String dongTieuDe="MSSV        -    HọTên       -   Phai   -   Lớp -   ĐịaChỉ      -   SĐT     -   NgàySinh";
+            String dongTieuDe = "MSSV        -    HọTên       -   Phai   -   Lớp -   ĐịaChỉ      -   SĐT     -   NgàySinh";
             bw.write(dongTieuDe);
             bw.close();
-            fw = new FileWriter("src/Data/SinhVien.txt",true);
+            fw = new FileWriter("src/Data/SinhVien.txt", true);
             bw = new BufferedWriter(fw);
-            for (int i=0;i<cd_DSSV;i++) {
+            for (int i = 0; i < cd_DSSV; i++) {
                 bw.newLine();
                 String s = sv[i].getIdSV() + "-" +
                         sv[i].getHoTen() + "-" +
                         sv[i].getPhai() + "-" +
                         sv[i].getLop() + "-" +
                         sv[i].getDiaChi() + "-" +
-                        sv[i].getSdt();
+                        sv[i].getSdt() + "-" +
+                        Chuyen_Date_String(sv[i].getNgaySinh());
                 bw.write(s);
             }
         } catch (IOException e) {
@@ -128,6 +132,7 @@ public class dal_SinhVien {
         }
         return true;
     }
+
     private static Date Chuyen_String_Date(String ngaySinh) {
         Date ngay = new Date();
         SimpleDateFormat Format = new SimpleDateFormat("dd/MM/yyyy");   // Định dạng ngày tháng trong chuỗi
@@ -139,7 +144,12 @@ public class dal_SinhVien {
         }
         return ngsinh;
     }
-
+    private static String Chuyen_Date_String(Date ngaySinh) {
+        String s=null;
+        SimpleDateFormat Format = new SimpleDateFormat("dd/MM/yyyy");   // Định dạng ngày tháng trong chuỗi
+        s = Format.format(ngaySinh);
+        return s;
+    }
     private static int Lay_Cd_dssv(Reader reader) throws IOException {
         String chuoi;
         br = new BufferedReader(reader);
@@ -165,6 +175,14 @@ public class dal_SinhVien {
             Date ngsinh = Chuyen_String_Date(ngay);
             arr_SV[vt].setNgaySinh(ngsinh);
         }
+    }
+
+    private static String tangId() {
+        dto_SinhVien sv[] = DocFile();
+        int cd = sv.length;
+        int id = Integer.parseInt(sv[cd - 1].getIdSV());
+        id = id + 1;
+        return String.valueOf(id);
     }
 
     public static void main(String[] args) throws IOException {

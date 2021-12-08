@@ -3,21 +3,21 @@ package DTO;
 import java.util.Date;
 
 public class dto_NhanVien extends dto_ConNguoi{
-    private String MaNV;
+    private String idNV;
     private Date NgayVaoLam;
 
     public dto_NhanVien(String hoTen, String phai, String diaChi, String sdt, Date ngaySinh, String maNV, Date ngayVaoLam) {
         super(hoTen, phai, diaChi, sdt, ngaySinh);
-        MaNV = maNV;
+        idNV = maNV;
         NgayVaoLam = ngayVaoLam;
     }
     public dto_NhanVien(){}
-    public String getMaNV() {
-        return MaNV;
+    public String getIdNV() {
+        return idNV;
     }
 
-    public void setMaNV(String maNV) {
-        MaNV = maNV;
+    public void setIdNV(String idNV) {
+        this.idNV = idNV;
     }
 
     public Date getNgayVaoLam() {

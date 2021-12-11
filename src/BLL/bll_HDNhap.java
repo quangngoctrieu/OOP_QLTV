@@ -17,7 +17,7 @@ public class bll_HDNhap implements bll_HoaDon{
     }
 
     @Override
-    public void thoat() {
+    public void trove() {
 
     }
 }

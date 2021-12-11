@@ -111,7 +111,7 @@ public class gui_SinhVien {
         System.out.println("Xin mời nhập Ngày Sinh: ");
         ngaySinh = sc.nextLine();
         ngaysinhdate = Chuyen_String_Date(ngaySinh);
-        dto_sv = new dto_SinhVien(null, hoTen, phai, lop, diaChi, sdt, ngaysinhdate);
+        dto_sv = new dto_SinhVien(null, hoTen, phai, lop, diaChi, sdt, ngaysinhdate);           //   3-A-A-A-A-A-12/07/2001
         try {
             bll_sv.them(dto_sv);
         } catch (IOException e) {
@@ -173,7 +173,7 @@ public class gui_SinhVien {
             System.out.println("Xin mời nhập Ngày Sinh: ");
             ngaySinh = sc.nextLine();
             ngaysinhdate = Chuyen_String_Date(ngaySinh);
-            dto_sv = new dto_SinhVien(String.valueOf(id), hoTen, phai, lop, diaChi, sdt, ngaysinhdate);
+            dto_sv = new dto_SinhVien(String.valueOf(id), hoTen, phai, lop, diaChi, sdt, ngaysinhdate); // dto_SV(...........), ID
             try {
                 bll_sv.sua(dto_sv, id);
             } catch (IOException e) {

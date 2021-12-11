@@ -144,6 +144,11 @@ public static void main(String[] args) {
     Scanner sc=new Scanner(System.in);
     Date s=new Date();
     s=null;
+    int a=7;
+    a=a++;
+    int c= 8;
+    c++;
+
 //    String s=sc.nextLine();
     if(s==null)
     System.out.println("hello "+s);

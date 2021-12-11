@@ -26,7 +26,7 @@ public class dal_SinhVien {
             br = new BufferedReader(rd);
             br.readLine();
             int vt = 0;
-            while ((chuoi = br.readLine()) != null) {
+            while ((chuoi = br.readLine()) != null) { // chuoi= 1-QuangNgocTrieu-Nam-DCT11810-VN-0845814481-12/07/2000
                 Luu_sv(chuoi, vt);                                              // Lưu từng dòng vào mảng
                 vt++;
             }
@@ -46,7 +46,7 @@ public class dal_SinhVien {
         try {
             FileWriter fw = new FileWriter("src/Data/SinhVien.txt", true);
             bw = new BufferedWriter(fw);
-            bw.newLine();
+            bw.newLine();                   // NEWLINE sẽ enter xuống dòng khi mình nhập chuỗi
             String s = sv.getIdSV() + "-" +
                     sv.getHoTen() + "-" +
                     sv.getPhai() + "-" +
@@ -164,14 +164,14 @@ public class dal_SinhVien {
     private static void Luu_sv(String chuoi, int vt) {
         StringTokenizer st = new StringTokenizer(chuoi, "-");
         while (st.hasMoreTokens()) {
-            arr_SV[vt] = new dto_SinhVien();
-            arr_SV[vt].setIdSV(st.nextToken());
+            arr_SV[vt] = new dto_SinhVien();  // arr_SV[0] = new dto_SV()
+            arr_SV[vt].setIdSV(st.nextToken()); // arr_SV[0].setIdSV
             arr_SV[vt].setHoTen(st.nextToken());
             arr_SV[vt].setPhai(st.nextToken());
             arr_SV[vt].setLop(st.nextToken());
             arr_SV[vt].setDiaChi(st.nextToken());
             arr_SV[vt].setSdt(st.nextToken());
-            String ngay = st.nextToken();
+            String ngay = st.nextToken();       //   12/07/2001
             Date ngsinh = Chuyen_String_Date(ngay);
             arr_SV[vt].setNgaySinh(ngsinh);
         }
@@ -188,6 +188,6 @@ public class dal_SinhVien {
     public static void main(String[] args) throws IOException {
         dal_SinhVien sv = new dal_SinhVien();
 //        dto_SinhVien sv1=new dto_SinhVien("1","1","1","1","1","1",null);
-//        sv.GhiFile(sv1);
+        sv.DocFile();
     }
 }

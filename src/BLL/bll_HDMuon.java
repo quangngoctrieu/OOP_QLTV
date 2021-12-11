@@ -18,7 +18,7 @@ public class bll_HDMuon implements bll_HoaDon{
     }
 
     @Override
-    public void thoat() {
+    public void trove() {
 
     }
 }

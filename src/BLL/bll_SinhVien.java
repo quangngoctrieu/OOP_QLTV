@@ -25,6 +25,7 @@ public class bll_SinhVien implements bll_ConNguoi {
         int cd_DSSV = DSSV_Cu.length;
         dto_SinhVien sv[] = new dto_SinhVien[cd_DSSV - 1];
         int c = 0, getid;
+
         for (int i = 0; i < cd_DSSV; i++) {
             getid = Integer.parseInt(DSSV_Cu[i].getIdSV());
             if (id != getid) {
@@ -41,18 +42,18 @@ public class bll_SinhVien implements bll_ConNguoi {
 
     @Override
     public void sua(Object object, int id) throws IOException {
-        dto_SinhVien obj = (dto_SinhVien) object;
+        dto_SinhVien obj = (dto_SinhVien) object;                   // ép kiểu object về sv
         dto_SinhVien DSSV_Cu[] = DocFile();
         setDataNull(id, obj, DSSV_Cu);
         int cd_DSSV = DSSV_Cu.length;
-        dto_SinhVien sv[] = new dto_SinhVien[cd_DSSV];
+        dto_SinhVien sv[] = new dto_SinhVien[cd_DSSV];                  // mảng sinh viên mới chứa mảng sv cũ và
+
         for (int i = 0; i < cd_DSSV; i++) {
             sv[i] = new dto_SinhVien();
             int tam = Integer.parseInt(DSSV_Cu[i].getIdSV());
             if (tam != id)
                 sv[i] = DSSV_Cu[i];
-            else {
-
+            else {                                                                      // dssv cũ và id mà mình muốn sửa
                 sv[i].setIdSV(obj.getIdSV());
                 sv[i].setHoTen(obj.getHoTen());
                 sv[i].setPhai(obj.getPhai());
@@ -71,7 +72,7 @@ public class bll_SinhVien implements bll_ConNguoi {
     }
 
 
-    private void setDataNull(int id, dto_SinhVien obj, dto_SinhVien[] DSSV_Cu) {
+    private void setDataNull(int id, dto_SinhVien obj, dto_SinhVien[] DSSV_Cu) {            // nếu người nhaaph enter khi sửa thì nó sẽ hiểu là lấy giá trị cũ
         if (obj.getNgaySinh() == null)
             obj.setNgaySinh(DSSV_Cu[id].getNgaySinh());
         if (obj.getSdt() == "")

@@ -9,11 +9,11 @@ import java.io.IOException;
 import static DAL.dal_SinhVien.*;
 
 public class bll_SinhVien implements bll_ConNguoi {
-
+    private  dal_SinhVien dal_sv=new dal_SinhVien();
 
     @Override
     public void them(Object object) throws IOException {
-        if (GhiFile((dto_SinhVien) object))
+        if (GhiFile_SV((dto_SinhVien) object))
             System.out.println("Thêm thành công");
         else
             System.out.println("Thêm thất bại ");
@@ -21,7 +21,7 @@ public class bll_SinhVien implements bll_ConNguoi {
 
     @Override
     public void xoa(int id) throws IOException {
-        dto_SinhVien DSSV_Cu[] = DocFile();
+        dto_SinhVien DSSV_Cu[] = DocFile_SV();
         int cd_DSSV = DSSV_Cu.length;
         dto_SinhVien sv[] = new dto_SinhVien[cd_DSSV - 1];
         int c = 0, getid;
@@ -33,7 +33,7 @@ public class bll_SinhVien implements bll_ConNguoi {
                 c++;
             }
         }
-        if (Xoa(sv))
+        if (dal_sv.Ghi_Xoa_SV(sv))
             System.out.println("Xóa thành công");
         else
             System.out.println("Xóa thất bại ");
@@ -43,7 +43,7 @@ public class bll_SinhVien implements bll_ConNguoi {
     @Override
     public void sua(Object object, int id) throws IOException {
         dto_SinhVien obj = (dto_SinhVien) object;                   // ép kiểu object về sv
-        dto_SinhVien DSSV_Cu[] = DocFile();
+        dto_SinhVien DSSV_Cu[] = DocFile_SV();
         setDataNull(id, obj, DSSV_Cu);
         int cd_DSSV = DSSV_Cu.length;
         dto_SinhVien sv[] = new dto_SinhVien[cd_DSSV];                  // mảng sinh viên mới chứa mảng sv cũ và
@@ -64,7 +64,7 @@ public class bll_SinhVien implements bll_ConNguoi {
             }
         }
 
-        if (GhiFile_Giua(sv))
+        if (dal_sv.Ghi_Sua_SV(sv))
             System.out.println("Sửa thành công");
         else
             System.out.println("Sửa thất bại ");

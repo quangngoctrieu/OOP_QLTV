@@ -2,15 +2,19 @@ package BLL;
 
 import DTO.dto_SinhVien;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.Reader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static DAL.dal_SinhVien.DocFile;
+import static DAL.dal_SinhVien.DocFile_SV;
 
 public class bll_KT {
+    public static BufferedReader br = null;
     public static boolean So(String so) {
         Pattern pattern = Pattern.compile("\\d*");
         Matcher matcher = pattern.matcher(so);
@@ -19,7 +23,33 @@ public class bll_KT {
         else
             return false;
     }
-
+    public static Date Chuyen_String_Date(String ngaySinh) {
+        Date ngay = new Date();
+        SimpleDateFormat Format = new SimpleDateFormat("dd/MM/yyyy");   // Định dạng ngày tháng trong chuỗi
+        Date ngsinh = null;
+        try {
+            ngsinh = Format.parse(ngaySinh);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return ngsinh;
+    }
+    public static String Chuyen_Date_String(Date ngaySinh) {
+        String s=null;
+        SimpleDateFormat Format = new SimpleDateFormat("dd/MM/yyyy");   // Định dạng ngày tháng trong chuỗi
+        s = Format.format(ngaySinh);
+        return s;
+    }
+    public static int Lay_Cd_dssv(Reader reader) throws IOException {
+        String chuoi;
+        br = new BufferedReader(reader);
+        br.readLine();
+        int cd_DSSV = 0;
+        while ((chuoi = br.readLine()) != null) {
+            cd_DSSV++;
+        }
+        return cd_DSSV;
+    }
     public static boolean SoGioiHan(String so, int toithieu, int toida) {
         Pattern pattern = Pattern.compile("[" + toithieu + "-" + toida + "]");
         Matcher matcher = pattern.matcher(so);
@@ -57,9 +87,9 @@ public class bll_KT {
 
     public static boolean IdTonTai(String id) {
 
-        dto_SinhVien arr_SV[] = DocFile();
+        dto_SinhVien arr_SV[] = DocFile_SV();
 
-        int cd = DocFile().length;
+        int cd = DocFile_SV().length;
         for (int i = 0; i < cd; i++) {
             String idtam=arr_SV[i].getIdSV();
             if (id.equals(idtam))

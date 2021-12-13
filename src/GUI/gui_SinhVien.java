@@ -1,7 +1,6 @@
 package GUI;
 
 import BLL.bll_SinhVien;
-import DAL.dal_SinhVien;
 import DTO.dto_SinhVien;
 
 import java.io.IOException;
@@ -11,7 +10,6 @@ import java.util.Date;
 import java.util.Scanner;
 
 import static BLL.bll_KT.*;
-import static DAL.dal_SinhVien.DocFile;
 
 public class gui_SinhVien {
     Scanner sc = new Scanner(System.in);

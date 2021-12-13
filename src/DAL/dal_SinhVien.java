@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.StringTokenizer;
 
+import static BLL.bll_KT.*;
+
 public class dal_SinhVien {
     public static dto_SinhVien arr_SV[] = null;
     public static BufferedReader br = null;
@@ -15,7 +17,7 @@ public class dal_SinhVien {
     public dal_SinhVien() {
     }
 
-    public static dto_SinhVien[] DocFile() {
+    public static dto_SinhVien[] DocFile_SV() {
         String chuoi;
         try {
             Reader rd = new FileReader("src/Data/SinhVien.txt");
@@ -40,7 +42,7 @@ public class dal_SinhVien {
     }
 
 
-    public static boolean GhiFile(dto_SinhVien sv) throws IOException {
+    public static boolean GhiFile_SV(dto_SinhVien sv) throws IOException {
         BufferedWriter bw = null;
         sv.setIdSV(tangId());
         try {
@@ -67,7 +69,7 @@ public class dal_SinhVien {
 
     }
 
-    public static boolean GhiFile_Giua(dto_SinhVien[] sv) throws IOException {
+    public boolean Ghi_Sua_SV(dto_SinhVien[] sv) throws IOException {
         BufferedWriter bw = null;
         int cd_DSSV = sv.length;
         try {
@@ -100,7 +102,7 @@ public class dal_SinhVien {
         return true;
     }
 
-    public static boolean Xoa(dto_SinhVien[] sv) throws IOException {
+    public boolean Ghi_Xoa_SV(dto_SinhVien[] sv) throws IOException {
         BufferedWriter bw = null;
         int cd_DSSV = sv.length;
         try {
@@ -133,33 +135,6 @@ public class dal_SinhVien {
         return true;
     }
 
-    private static Date Chuyen_String_Date(String ngaySinh) {
-        Date ngay = new Date();
-        SimpleDateFormat Format = new SimpleDateFormat("dd/MM/yyyy");   // Định dạng ngày tháng trong chuỗi
-        Date ngsinh = null;
-        try {
-            ngsinh = Format.parse(ngaySinh);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return ngsinh;
-    }
-    private static String Chuyen_Date_String(Date ngaySinh) {
-        String s=null;
-        SimpleDateFormat Format = new SimpleDateFormat("dd/MM/yyyy");   // Định dạng ngày tháng trong chuỗi
-        s = Format.format(ngaySinh);
-        return s;
-    }
-    private static int Lay_Cd_dssv(Reader reader) throws IOException {
-        String chuoi;
-        br = new BufferedReader(reader);
-        br.readLine();
-        int cd_DSSV = 0;
-        while ((chuoi = br.readLine()) != null) {
-            cd_DSSV++;
-        }
-        return cd_DSSV;
-    }
 
     private static void Luu_sv(String chuoi, int vt) {
         StringTokenizer st = new StringTokenizer(chuoi, "-");
@@ -178,7 +153,7 @@ public class dal_SinhVien {
     }
 
     private static String tangId() {
-        dto_SinhVien sv[] = DocFile();
+        dto_SinhVien sv[] = DocFile_SV();
         int cd = sv.length;
         int id = Integer.parseInt(sv[cd - 1].getIdSV());
         id = id + 1;
@@ -188,6 +163,6 @@ public class dal_SinhVien {
     public static void main(String[] args) throws IOException {
         dal_SinhVien sv = new dal_SinhVien();
 //        dto_SinhVien sv1=new dto_SinhVien("1","1","1","1","1","1",null);
-        sv.DocFile();
+        sv.DocFile_SV();
     }
 }

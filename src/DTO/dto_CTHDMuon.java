@@ -9,7 +9,7 @@ public class dto_CTHDMuon {
     public dto_CTHDMuon() {
     }
 
-    public dto_CTHDMuon(String idHD, String idSach, int soLuong, int giaSach, int tongGia, String idNCC) {
+    public dto_CTHDMuon(String idHD, String idSach, String idNCC, int soLuong, int giaSach, int tongGia) {
         IdHD = idHD;
         IdSach = idSach;
         SoLuong = soLuong;

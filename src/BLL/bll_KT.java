@@ -8,6 +8,7 @@ import java.io.Reader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,13 +16,25 @@ import static DAL.dal_SinhVien.DocFile_SV;
 
 public class bll_KT {
     public static BufferedReader br = null;
-    public static boolean So(String so) {
+
+    public static boolean Check_Num(String so) {
         Pattern pattern = Pattern.compile("\\d*");
         Matcher matcher = pattern.matcher(so);
         if (matcher.matches())
             return true;
         else
             return false;
+    }
+    public static boolean checkngay(String ngaySinh) {
+//        Date ngay = new Date();
+        SimpleDateFormat Format = new SimpleDateFormat("dd/MM/yyyy");   // Định dạng ngày tháng trong chuỗi
+        Date ngsinh = null;
+        try {
+            ngsinh = Format.parse(ngaySinh);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
     }
     public static Date Chuyen_String_Date(String ngaySinh) {
         Date ngay = new Date();
@@ -34,22 +47,26 @@ public class bll_KT {
         }
         return ngsinh;
     }
+
     public static String Chuyen_Date_String(Date ngaySinh) {
-        String s=null;
+        String s = null;
         SimpleDateFormat Format = new SimpleDateFormat("dd/MM/yyyy");   // Định dạng ngày tháng trong chuỗi
         s = Format.format(ngaySinh);
         return s;
     }
-    public static int Lay_Cd_dssv(Reader reader) throws IOException {
+
+    public static int Lay_Cd_ds(Reader reader) throws IOException {
         String chuoi;
         br = new BufferedReader(reader);
         br.readLine();
         int cd_DSSV = 0;
         while ((chuoi = br.readLine()) != null) {
-            cd_DSSV++;
+            if (chuoi.length() > 0)
+                cd_DSSV++;
         }
         return cd_DSSV;
     }
+
     public static boolean SoGioiHan(String so, int toithieu, int toida) {
         Pattern pattern = Pattern.compile("[" + toithieu + "-" + toida + "]");
         Matcher matcher = pattern.matcher(so);
@@ -68,14 +85,7 @@ public class bll_KT {
             return false;
     }
 
-    //    public static boolean Ngay(String ngay) {
-//        if(ngay.length()==12)
-//            if (ngay.contains("-")||)
-//        if (matcher.matches())
-//            return true;
-//        else
-//            return false;
-//    }
+
     public static boolean Chuoi(String s) {
         Pattern p = Pattern.compile("[^A-Za-z]");
         Matcher matcher = p.matcher(s);
@@ -91,7 +101,7 @@ public class bll_KT {
 
         int cd = DocFile_SV().length;
         for (int i = 0; i < cd; i++) {
-            String idtam=arr_SV[i].getIdSV();
+            String idtam = arr_SV[i].getIdSV();
             if (id.equals(idtam))
 
                 return true;
@@ -99,7 +109,6 @@ public class bll_KT {
         }
         return false;
     }
-
 
     public static boolean ThoiGian(String s) {
         Date ngay = new Date();
@@ -122,7 +131,7 @@ public class bll_KT {
 
     public static void main() {
 //        ThoiGian("12-200-2001");
-    if (IdTonTai("1"))
-        System.out.println("hello");
+        if (IdTonTai("1"))
+            System.out.println("hello");
     }
 }

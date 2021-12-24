@@ -1,5 +1,6 @@
 package GUI;
 
+import BLL.bll_ConNguoi;
 import BLL.bll_SinhVien;
 import DTO.dto_SinhVien;
 
@@ -10,21 +11,22 @@ import java.util.Date;
 import java.util.Scanner;
 
 import static BLL.bll_KT.*;
+import static DAL.dal_SinhVien.DocFile_SV;
 
 public class gui_SinhVien {
     Scanner sc = new Scanner(System.in);
-    bll_SinhVien bll_sv = new bll_SinhVien();
+    bll_ConNguoi bll_sv = new bll_SinhVien();
     dto_SinhVien dto_sv = new dto_SinhVien();
 
     public gui_SinhVien() {
     }
 
     public void TrangSinhVien() {
-        System.out.println("-------------     Chào Mừng Bạn Đến Với Trang Sinh Viên       -------------");
-        System.out.println("1. Hiển thị danh sách sinh viên ");
-        System.out.println("2. Thêm một sinh viên ");
-        System.out.println("3. Sửa một sinh viên");
-        System.out.println("4. Xóa một sinh viên ");
+        System.out.println("-------------     Chào Mừng Bạn Đến Với Trang Sinh viên       -------------");
+        System.out.println("1. Hiển thị danh sách Sinh viên ");
+        System.out.println("2. Thêm một Sinh viên ");
+        System.out.println("3. Sửa một Sinh viên");
+        System.out.println("4. Xóa một Sinh viên ");
         System.out.println("5. Về màn hình chính");
         System.out.println("6. Thoát ");
         System.out.println("---------Mời bạn nhập lựa chọn--------");
@@ -41,18 +43,20 @@ public class gui_SinhVien {
 
         switch (Integer.parseInt(lc)) {
             case 1:
-                System.out.println("---------Hiển thị một sinh viên -------------");
+                System.out.println("---------Hiển thị danh dách một Sinh viên -------------");
+                HienThiDanhSach();
+                TrangSinhVien();
                 break;
             case 2:
-                System.out.println("---------Thêm một sinh viên -------------");
+                System.out.println("---------Thêm một Sinh viên -------------");
                 them();
                 break;
             case 3:
-                System.out.println("---------Sửa một sinh viên -------------");
+                System.out.println("---------Sửa một Sinh viên -------------");
                 sua();
                 break;
             case 4:
-                System.out.println("---------Xóa một sinh viên -------------");
+                System.out.println("---------Xóa một Sinh viên -------------");
                 xoa();
                 break;
             case 5:
@@ -106,8 +110,14 @@ public class gui_SinhVien {
             System.out.println("Nhập sai mời nhập lại: ");
             sdt = sc.nextLine();
         }
-        System.out.println("Xin mời nhập Ngày Sinh: ");
-        ngaySinh = sc.nextLine();
+
+        ngaySinh="";
+        boolean tam=false;
+        while (!tam){
+            System.out.println("Xin mời nhập Ngày Sinh: ");
+            ngaySinh = sc.nextLine();
+            tam=checkngay(ngaySinh);
+        }
         ngaysinhdate = Chuyen_String_Date(ngaySinh);
         dto_sv = new dto_SinhVien(null, hoTen, phai, lop, diaChi, sdt, ngaysinhdate);           //   3-A-A-A-A-A-12/07/2001
         try {
@@ -168,8 +178,13 @@ public class gui_SinhVien {
                 System.out.println("Nhập sai mời nhập lại: ");
                 sdt = sc.nextLine();
             }
-            System.out.println("Xin mời nhập Ngày Sinh: ");
-            ngaySinh = sc.nextLine();
+            ngaySinh="";
+            boolean tam=false;
+            while (!tam){
+                System.out.println("Xin mời nhập Ngày Sinh: ");
+                ngaySinh = sc.nextLine();
+                tam=checkngay(ngaySinh);
+            }
             ngaysinhdate = Chuyen_String_Date(ngaySinh);
             dto_sv = new dto_SinhVien(String.valueOf(id), hoTen, phai, lop, diaChi, sdt, ngaysinhdate); // dto_SV(...........), ID
             try {
@@ -202,13 +217,22 @@ public class gui_SinhVien {
             }
         }
     }
+    public void HienThiDanhSach(){
+        dto_SinhVien sv[] = DocFile_SV();
+        System.out.println("MSSV   -    HọTên       -   Phai   -      Lớp      -   ĐịaChỉ      -         SĐT     -   NgàySinh");
+        for(int i = 0; i< sv.length; i++)
+            System.out.println(sv[i].getIdSV() + "        " + sv[i].getHoTen() + "      " +  sv[i].getPhai() + "          "
+                    + sv[i].getLop() + "         " + sv[i].getDiaChi() + "          "
+                    + sv[i].getSdt()+  "        " + Chuyen_Date_String(sv[i].getNgaySinh()));
+    }
 
     public void thoat() {
         System.out.println("xin chào và hen gặp lại ");
     }
 
     public void quayvemanhinhchinh() {
-
+        Main m=new Main();
+        m.TrangChinh();
 
     }
 
@@ -226,7 +250,7 @@ public class gui_SinhVien {
     public static void main(String[] args) {
         gui_SinhVien sv = new gui_SinhVien();
         sv.TrangSinhVien();
-//        sv.them();
-//        sv.xoa();
+        sv.them();
+        sv.xoa();
     }
 }

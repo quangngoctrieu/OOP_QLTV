@@ -3,16 +3,25 @@ package DTO;
 public class dto_Sach {
     private String IdSach, TenSach, IdNCC;
     private int SoLuongSach, GiaSach;
-
+    private String IdLoai;
     public dto_Sach() {
     }
 
-    public dto_Sach(String idSach, String tenSach, String idNCC, int soLuongSach, int giaSach) {
+    public dto_Sach(String idSach, String tenSach, String idNCC, int soLuongSach, int giaSach, String idLoai) {
         IdSach = idSach;
         TenSach = tenSach;
         IdNCC = idNCC;
         SoLuongSach = soLuongSach;
         GiaSach = giaSach;
+        IdLoai = idLoai;
+    }
+
+    public String getIdLoai() {
+        return IdLoai;
+    }
+
+    public void setIdLoai(String idLoai) {
+        IdLoai = idLoai;
     }
 
     public String getIdSach() {

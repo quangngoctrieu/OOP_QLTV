@@ -3,8 +3,6 @@ package DAL;
 import DTO.dto_SinhVien;
 
 import java.io.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.StringTokenizer;
 
@@ -21,16 +19,19 @@ public class dal_SinhVien {
         String chuoi;
         try {
             Reader rd = new FileReader("src/Data/SinhVien.txt");
-            int cd_DSSV = Lay_Cd_dssv(rd);                                  // Truyền vào đường dẫn đễ lấy số dòng
+            int cd_DSSV = Lay_Cd_ds(rd);                                  // Truyền vào đường dẫn đễ lấy số dòng
             arr_SV = new dto_SinhVien[cd_DSSV];                                   // Khởi tạo mảng dssv
 
             rd = new FileReader("src/Data/SinhVien.txt");           // Khởi tạo lại đường dẫn để add vào mảng
             br = new BufferedReader(rd);
             br.readLine();
+
             int vt = 0;
-            while ((chuoi = br.readLine()) != null) { // chuoi= 1-QuangNgocTrieu-Nam-DCT11810-VN-0845814481-12/07/2000
-                Luu_sv(chuoi, vt);                                              // Lưu từng dòng vào mảng
-                vt++;
+            while ((chuoi = br.readLine()) != null) {   // chuoi= 1-QuangNgocTrieu-Nam-DCT11810-VN-0845814481-12/07/2000
+                if (chuoi.length() > 0) {
+                    Luu_sv(chuoi, vt);                                              // Lưu từng dòng vào mảng
+                    vt++;
+                }
             }
             br.close();
         } catch (FileNotFoundException e) {
@@ -78,6 +79,7 @@ public class dal_SinhVien {
             String dongTieuDe = "MSSV        -    HọTên       -   Phai   -   Lớp -   ĐịaChỉ      -   SĐT     -   NgàySinh";
             bw.write(dongTieuDe);
             bw.close();
+
             fw = new FileWriter("src/Data/SinhVien.txt", true);
             bw = new BufferedWriter(fw);
             for (int i = 0; i < cd_DSSV; i++) {
@@ -88,7 +90,7 @@ public class dal_SinhVien {
                         sv[i].getLop() + "-" +
                         sv[i].getDiaChi() + "-" +
                         sv[i].getSdt() + "-" +
-                        sv[i].getNgaySinh();
+                        Chuyen_Date_String(sv[i].getNgaySinh());
                 bw.write(s);
             }
         } catch (IOException e) {

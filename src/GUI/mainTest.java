@@ -8,6 +8,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static BLL.bll_KT.*;
 
 public class mainTest {
 //    public static void main(String[] args) {
@@ -69,7 +73,7 @@ public class mainTest {
 //         }
 //    }
 
-//    public static void main(String[] args) throws IOException {
+    //    public static void main(String[] args) throws IOException {
 //        BufferedReader bf = null;
 //        BufferedWriter bufferedWriter = null;
 //
@@ -140,17 +144,51 @@ public class mainTest {
 //        }
 //        return arr_SV;
 //    }
-public static void main(String[] args) {
-    Scanner sc=new Scanner(System.in);
-    Date s=new Date();
-    s=null;
-    int a=7;
-    a=a++;
-    int c= 8;
-    c++;
+//public static void main(String[] args) {
+//    Scanner sc=new Scanner(System.in);
+//    Date s=new Date();
+//    s=null;
+//    int a=7;
+//    a=a++;
+//    int c= 8;
+//    c++;
+//
+////    String s=sc.nextLine();
+//    if(s==null)
+//    System.out.println("hello "+s);
+//}
+//public static void main(String[] args) {
+//    Scanner sc=new Scanner(System.in);
+//    System.out.println("Xin mời nhập Tổng sách: ");
+//    String Tongsach = sc.nextLine();
+//    boolean kt= Check_Num(Tongsach);
+//
+//        while (!kt) {
+//            System.out.println("Nhập sai mời nhập lại Tổng sách: ");
+//            Tongsach = sc.nextLine();
+//            kt=Check_Num(Tongsach);
+//            System.out.println(kt);
+//        }
+//}
+    public static void main(String[] args) {
+        int t=0;
+        while(t==0) {
+            System.out.println("Bạn có muốn nhập tiếp ");
+            Scanner sc = new Scanner(System.in);
+            System.out.println("1. Chắc");
+            System.out.println("2. Không");
+            String lc2 = sc.nextLine();
+            while (!SoGioiHan(lc2, 1, 2)) {
+                System.out.println("Nhập sai mời nhập lại lựa chọn: ");
+                lc2 = sc.nextLine();
+            }
+            if(lc2.equals("2"))
+                t=1;
+            else
+                t=0;
+        }
 
-//    String s=sc.nextLine();
-    if(s==null)
-    System.out.println("hello "+s);
-}
+    }
+
+
 }

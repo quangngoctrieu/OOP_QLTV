@@ -5,14 +5,13 @@ public class dto_CTHDTra {
     private int SoLuong, GiaSach;
     private int TongGia;
     private int TienPhat;
-    private int TienTraCoc;
     private String IdNCC;
 
     public dto_CTHDTra() {
     }
 
-    public dto_CTHDTra(String idHD, String idSach, String idQuyDinh, int soLuong,
-                       int giaSach, int tongGia, int tienPhat, int tienTraCoc, String idNCC) {
+    public dto_CTHDTra(String idHD, String idSach, String idNCC,String idQuyDinh,
+                       int soLuong, int giaSach, int tongGia, int tienPhat) {
         IdHD = idHD;
         IdSach = idSach;
         IdQuyDinh = idQuyDinh;
@@ -20,7 +19,6 @@ public class dto_CTHDTra {
         GiaSach = giaSach;
         TongGia = tongGia;
         TienPhat = tienPhat;
-        TienTraCoc = tienTraCoc;
         IdNCC = idNCC;
     }
 
@@ -78,14 +76,6 @@ public class dto_CTHDTra {
 
     public void setTienPhat(int tienPhat) {
         TienPhat = tienPhat;
-    }
-
-    public int getTienTraCoc() {
-        return TienTraCoc;
-    }
-
-    public void setTienTraCoc(int tienTraCoc) {
-        TienTraCoc = tienTraCoc;
     }
 
     public String getIdNCC() {

@@ -54,7 +54,7 @@ public class bll_SinhVien implements bll_ConNguoi {
             if (tam != id)
                 sv[i] = DSSV_Cu[i];
             else {                                                                      // dssv cũ và id mà mình muốn sửa
-                sv[i].setIdSV(obj.getIdSV());
+                sv[i].setIdSV(String.valueOf(id));
                 sv[i].setHoTen(obj.getHoTen());
                 sv[i].setPhai(obj.getPhai());
                 sv[i].setLop(obj.getLop());

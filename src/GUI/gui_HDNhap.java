@@ -64,7 +64,6 @@ public class gui_HDNhap {
 
         }
     }
-
     public void them() {
         String so, Manv, Maloai, Tongsach, TongGia, NgayNhap;
         Date ngayNhap;
@@ -105,7 +104,6 @@ public class gui_HDNhap {
         bll_hdn.them(dto_hdn);
 
     }
-
     public void sua() {
         System.out.println("Mời bạn nhập id muốn sửa ");
         int id = sc.nextInt();
@@ -160,7 +158,6 @@ public class gui_HDNhap {
         }
 
     }
-
     public void xoa() {
         System.out.println("Mời bạn nhập id muốn xóa ");
         int i = sc.nextInt();
@@ -177,7 +174,6 @@ public class gui_HDNhap {
             bll_hdn.xoa(i);
         }
     }
-
     public void HienThiDanhSach() {
         dto_HDNhap hdn[] = DocFile_HDNhap();
         System.out.println("MaHD  - MaNV -   MaLoai   -   Tổng Sách -   Tổng giá   - Ngày nhập");

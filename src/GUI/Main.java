@@ -9,12 +9,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Main m = new Main();
         m.TrangChinh();
-
-
     }
-
     Scanner sc = new Scanner(System.in);
-
     public void TrangChinh() {
         System.out.println("-------------     Chào Mừng Bạn Bạn muốn chọn    -------------");
         System.out.println("1. Sinh Viên ");
@@ -26,13 +22,14 @@ public class Main {
         System.out.println("7. Loại Sách ");
         System.out.println("8. NCC ");
         System.out.println("9. Quy Định ");
-        System.out.println("10. Thoát ");
+        System.out.println("10. Thống kê ");
+        System.out.println("11. Thoát ");
         System.out.println("---------Mời bạn nhập lựa chọn--------");
         String lc;
         lc = sc.nextLine();
         int toithieu = 1;
         int toida = 9;
-        if (!lc.equals("10"))
+        if (!lc.equals("10") && !lc.equals("11"))
             while (!SoGioiHan(lc, toithieu, toida)) {
                 System.out.println("---------Bạn đã nhập số lựa chọn không chính xác--------");
                 System.out.println("---------Mời bạn nhập lựa chọn--------");
@@ -87,12 +84,16 @@ public class Main {
                 qd.TrangQuyDinh();
                 break;
             case 10:
+                System.out.println("--------- Thống kê -------------");
+                gui_ThongKe tk = new gui_ThongKe();
+                tk.TrangThongKe();
+                break;
+            case 11:
                 thoat();
                 break;
 
         }
     }
-
     public void thoat() {
         System.out.println("xin chào và hẹn gặp lại ");
     }

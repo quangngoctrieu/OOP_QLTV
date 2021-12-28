@@ -66,7 +66,6 @@ public class gui_HDMuon {
             case 6:
                 thoat();
                 break;
-
         }
     }
 
@@ -181,7 +180,6 @@ public class gui_HDMuon {
         }
 
     }
-
     public void xoa() {
         System.out.println("Mời bạn nhập id muốn xóa ");
         int i = sc.nextInt();
@@ -198,7 +196,6 @@ public class gui_HDMuon {
             bll_hdMuon.xoa(i);
         }
     }
-
     public void HienThiDanhSach() {
         dto_HDMuon hdn[] = DocFile_HDMuon();
         System.out.println("MaHD  - MaNV -  MaSV  - Ngày Lập HĐ - Tổng Sách   -   Tổng tiền sách - Tiền đặt cọc");

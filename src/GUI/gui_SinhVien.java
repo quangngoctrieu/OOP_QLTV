@@ -2,6 +2,7 @@ package GUI;
 
 import BLL.bll_ConNguoi;
 import BLL.bll_SinhVien;
+import DTO.dto_Sach;
 import DTO.dto_SinhVien;
 
 import java.io.IOException;
@@ -11,6 +12,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 import static BLL.bll_KT.*;
+import static DAL.dal_Sach.DocFile_Sach;
 import static DAL.dal_SinhVien.DocFile_SV;
 
 public class gui_SinhVien {
@@ -27,13 +29,14 @@ public class gui_SinhVien {
         System.out.println("2. Thêm một Sinh viên ");
         System.out.println("3. Sửa một Sinh viên");
         System.out.println("4. Xóa một Sinh viên ");
-        System.out.println("5. Về màn hình chính");
-        System.out.println("6. Thoát ");
+        System.out.println("5. Tìm kiếm sinh viên");
+        System.out.println("6. Về màn hình chính");
+        System.out.println("7. Thoát ");
         System.out.println("---------Mời bạn nhập lựa chọn--------");
         String lc;
         lc = sc.nextLine();
         int toithieu = 1;
-        int toida = 6;
+        int toida = 7;
         while (!SoGioiHan(lc, toithieu, toida)) {
             System.out.println("---------Bạn đã nhập số lựa chọn không chính xác--------");
             System.out.println("---------Mời bạn nhập lựa chọn--------");
@@ -60,10 +63,14 @@ public class gui_SinhVien {
                 xoa();
                 break;
             case 5:
+                System.out.println("---------Tìm kiếm sinh viên -------------");
+                timkieṃ̣();
+                break;
+            case 6:
                 System.out.println("---------Quay về màn hình chính -------------");
                 quayvemanhinhchinh();
                 break;
-            case 6:
+            case 7:
                 thoat();
                 break;
 
@@ -126,7 +133,6 @@ public class gui_SinhVien {
             e.printStackTrace();
         }
     }
-
     public void sua() {
         System.out.println("Mời bạn nhập id muốn sửa ");
         int id = sc.nextInt();
@@ -196,7 +202,6 @@ public class gui_SinhVien {
         }
 
     }
-
     public void xoa() {
         System.out.println("Mời bạn nhập id muốn xóa ");
         int i = sc.nextInt();
@@ -225,7 +230,20 @@ public class gui_SinhVien {
                     + sv[i].getLop() + "         " + sv[i].getDiaChi() + "          "
                     + sv[i].getSdt()+  "        " + Chuyen_Date_String(sv[i].getNgaySinh()));
     }
+    public void timkieṃ̣() {
+        System.out.println("Mời bạn nhập tên sinh viên muốn tim kiếm");
+        String name = sc.nextLine();
+        dto_SinhVien sv[] = DocFile_SV();
+        System.out.println("MSSV   -    HọTên       -   Phai   -      Lớp      -   ĐịaChỉ      -         SĐT     -   NgàySinh");
+        for (int i=0; i<sv.length;i++)
+        {
+            if(sv[i].getHoTen().equals(name))
+                System.out.println(sv[i].getIdSV() + "        " + sv[i].getHoTen() + "      " +  sv[i].getPhai() + "          "
+                        + sv[i].getLop() + "         " + sv[i].getDiaChi() + "          "
+                        + sv[i].getSdt()+  "        " + Chuyen_Date_String(sv[i].getNgaySinh()));
+        }
 
+    }
     public void thoat() {
         System.out.println("xin chào và hen gặp lại ");
     }
@@ -247,10 +265,10 @@ public class gui_SinhVien {
         }
         return ngsinh;
     }
-    public static void main(String[] args) {
-        gui_SinhVien sv = new gui_SinhVien();
-        sv.TrangSinhVien();
-        sv.them();
-        sv.xoa();
-    }
+//    public static void main(String[] args) {
+//        gui_SinhVien sv = new gui_SinhVien();
+//        sv.TrangSinhVien();
+//        sv.them();
+//        sv.xoa();
+//    }
 }

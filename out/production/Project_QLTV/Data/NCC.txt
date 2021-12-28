@@ -1,4 +1,3 @@
-MaNCC  -  TenNCC
-1-CoCaCoLa
+IdLoai     -     TenLoai
+1-Quang Ngọc Triệu
 2-Pepsi
-3-Nike
